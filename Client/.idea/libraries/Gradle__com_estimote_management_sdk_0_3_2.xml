@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.estimote:management-sdk-0.3.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/management-sdk-0.3.2.aar/19bfa23e489d72c4033639e82200c554/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/management-sdk-0.3.2.aar/19bfa23e489d72c4033639e82200c554/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.estimote/management-sdk/0.3.2/642939322b8d9bd26f6ca22297d1fe097bce0c00/management-sdk-0.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

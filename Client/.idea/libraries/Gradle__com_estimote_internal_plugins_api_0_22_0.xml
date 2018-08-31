@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.estimote:internal-plugins-api-0.22.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/internal-plugins-api-0.22.0.aar/0ea8cc2b6f9d44ee9d7e9037a16b03c3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/internal-plugins-api-0.22.0.aar/0ea8cc2b6f9d44ee9d7e9037a16b03c3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.estimote/internal-plugins-api/0.22.0/7711b73327f9e6c3f6fe5247a750d621b9cca95b/internal-plugins-api-0.22.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

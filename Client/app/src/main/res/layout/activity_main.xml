@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="승차권 예매"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/departTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="출발"
+        android:textSize="30sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
+        app:layout_constraintEnd_toStartOf="@id/arriveTv_main"/>
+
+    <TextView
+        android:id="@+id/arriveTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="도착"
+        android:textSize="30sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
+        app:layout_constraintStart_toEndOf="@id/departTv_main"/>
+
+    <TextView
+        android:id="@+id/actualDepartTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="목포항"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/departTv_main"
+        app:layout_constraintTop_toBottomOf="@id/departTv_main"
+        app:layout_constraintEnd_toStartOf="@id/arrowImage_main" />
+
+    <ImageView
+        android:id="@+id/arrowImage_main"
+        android:src="@drawable/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@id/actualDepartTv_main"
+        app:layout_constraintEnd_toStartOf="@id/actualArriveTv_main"
+        app:layout_constraintTop_toBottomOf="@id/departTv_main"/>
+
+    <TextView
+        android:id="@+id/actualArriveTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제주항"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/arriveTv_main"
+        app:layout_constraintTop_toBottomOf="@id/arriveTv_main"
+        app:layout_constraintStart_toEndOf="@id/arrowImage_main"/>
+
+
+</android.support.constraint.ConstraintLayout>

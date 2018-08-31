@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/departTv_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="목포항"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/departTimeTv_ticket"
+        app:layout_constraintEnd_toStartOf="@id/departTv_ticket"/>
+    <TextView
+        android:id="@+id/departTimeTv_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15:00"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/departTv_ticket"
+        app:layout_constraintEnd_toStartOf="@id/arriveTimeTv_ticket"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/arriveTv_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제주항"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/departTv_ticket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/arriveTimeTv_ticket"/>
+    <TextView
+        android:id="@+id/arriveTimeTv_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17:00"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/arriveTv_ticket"
+        app:layout_constraintStart_toEndOf="@id/departTimeTv_ticket"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
