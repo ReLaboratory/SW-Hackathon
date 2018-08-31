@@ -76,8 +76,8 @@
       const type = rd.getAttribute('data-type');
       
       const item = {};
-      item.x = rd.getAttribute('data-x') * 1;
-      item.y = rd.getAttribute('data-x') * 1;
+      item.x = parseInt(rd.getAttribute('data-x') * 1, 10);
+      item.y = parseInt(rd.getAttribute('data-y') * 1, 10);
 
       item.width = rd.style.width;
       item.height = rd.style.height;
