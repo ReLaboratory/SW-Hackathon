@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./script/interact.js"></script>
+  <!-- <script src="./script/interact.min.js"></script> -->
+  <link rel="stylesheet" href="./css/make.css">
+</head>
+<body>
+  <main class="main">
+    <div class="ipt-ctn">
+      가로: <input class="ipt" type="number" onchange="changeX(this.value)" value="1200">m
+      <br>
+      세로: <input class="ipt" type="number" onchange="changeY(this.value)" value="200">m
+    </div>
+    <a onmouseover="updateData()" class="download-link" download="data.json">파일 저장</a>
+    <input id="drawing" type="file" style="display:none" onchange="onchangeDrawing(event)">
+    <label for="drawing" class="import-drawing">참고도 변경</label>
+    <img class="draggable-drawing"/>
+    <div class="resize-container"></div>
+    <div class="trash-can"></div>
+  </main>
+  <div class="menu">
+    <div class="menu__title">구성 요소</div>
+    <div class="menu__selectable">
+      <div class="selectee" onclick="createDraggable(event, 100, 100)" data-type="seat">
+        <div class="selectee__name">좌석</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event)" data-type="extinguisher">
+        <div class="selectee__name">소화기</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event)" data-type="axe">
+        <div class="selectee__name">비상도끼</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event, 140, 140)" data-type="boat">
+        <div class="selectee__name">구명정</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event)" data-type="jacket">
+        <div class="selectee__name">구명조끼</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event, 140, 140)" data-type="exit">
+        <div class="selectee__name">비상구</div>
+      </div>
+      <div class="selectee" onclick="createDraggable(event)" data-type="beacon">
+        <div class="selectee__name">비콘</div>
+      </div>
+      <div class="selectee" onclick="createWay()" data-type="way">
+        <div class="selectee__name">대피로</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  const resizeCtn = document.querySelector('.resize-container');
+  const downloadLink = document.querySelector('.download-link');
+  const METER_RATIO = 50; // 1미터 당 픽셀 상수
+  const MIN_WIDTH = 50; // resiazable 최소 가로 길이
+  const MIN_HEIGHT = 50; // resiazable 최소 세로 길이
+
+  const updateData = () => {
+    const floorPlanData = {
+      floor: {},
+    }; // json 파일로 변환 될 데이터
+
+    const resizeDrags = document.getElementsByClassName('resize-drag'); // 평면상의 개체
+    for(rd of resizeDrags) {
+      const type = rd.getAttribute('data-type');
+      floorPlanData[type] = [];
+    }
+
+    for(rd of resizeDrags) {
+      const type = rd.getAttribute('data-type');
+      
+      const item = {};
+      item.x = rd.getAttribute('data-x') * 1;
+      item.y = rd.getAttribute('data-x') * 1;
+
+      item.width = rd.style.width;
+      item.height = rd.style.height;
+      floorPlanData[type].push(item);
+    }
+
+    downloadLink.href =
+      `data: text/json;charset=utf-8,
+      ${ encodeURIComponent(JSON.stringify(floorPlanData)) }`;
+  }
+
+  const changeX = (value) => {
+    if ( value >= 1 ) {
+      const width = value * METER_RATIO;
+      resizeCtn.style.width = width + 'px';
+    }
+  }
+  const changeY = (value) => {
+    if ( value >= 1 ) {
+      const height = value * METER_RATIO;
+      resizeCtn.style.height = height + 'px';
+    }
+  }
+
+  const mapping = (selector, copyable=false) => {
+    const obj = interact(selector)
+    .draggable({
+      // call this function on every dragmove event
+      onmove(event) {
+        var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+        // translate the element
+        target.style.webkitTransform =
+        target.style.transform =
+          `translate(${x}px, ${y}px)`;
+
+        // update the posiion attributes
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+      },
+    })
+    .resizable({
+      // resize from all edges and corners
+      edges: { left: true, right: true, bottom: true, top: true },
+
+      // minimum size
+      restrictSize: {
+        min: { width: MIN_WIDTH, height: MIN_HEIGHT },
+      },
+    })
+    .on('resizemove', function (event) {
+      var target = event.target;
+
+      // update the element's style
+      target.style.width  = event.rect.width + 'px';
+      target.style.height = event.rect.height + 'px';
+    });
+
+    if (copyable) {
+      obj.on('move', function (event) {
+        var interaction = event.interaction;
+
+        // if the pointer was moved while being held down
+        // and an interaction hasn't started yet 
+        if (event.ctrlKey && interaction.pointerIsDown && !interaction.interacting()) {
+          var original = event.currentTarget,
+            // create a clone of the currentTarget element
+            clone = event.currentTarget.cloneNode(true);
+
+          // insert the clone to the page
+          // TODO: position the clone appropriately
+          resizeCtn.appendChild(clone);
+
+          // start a drag interaction targeting the clone
+          interaction.start({ name: 'drag' },
+                            event.interactable,
+                            clone);
+        }
+      });
+    }
+  }
+
+  interact('.trash-can').dropzone({
+    // only accept elements matching this CSS selector
+    accept: '.resize-drag',
+    // Require a 75% element overlap for a drop to be possible
+    overlap: 0.0001,
+
+    // listen for drop related events:
+    ondragenter: function (event) {
+      var draggableElement = event.relatedTarget,
+          dropzoneElement = event.target;
+
+      // feedback the possibility of a drop
+      dropzoneElement.classList.add('drop-target');
+      draggableElement.classList.add('can-drop');
+    },
+    ondragleave: function (event) {
+      // remove the drop feedback style
+      event.target.classList.remove('drop-target');
+      event.relatedTarget.classList.remove('can-drop');
+    },
+    ondrop: function (event) {
+      const obj = event.relatedTarget;
+      obj.parentNode.removeChild(obj);
+    },
+  });
+
+  const createDraggable = (event, width = 50, height = 50) => {
+    const el = document.createElement('div');
+    el.setAttribute('data-type', event.target.getAttribute('data-type'));
+    el.classList.add('resize-drag');
+
+    // 초기값 부여
+    el.setAttribute('data-x', 0);
+    el.setAttribute('data-y', 0);
+    el.style.width = width + 'px';
+    el.style.height = height + 'px';
+    
+    resizeCtn.appendChild(el);
+  };
+  const createWay = (width = 500, height = 50) => {
+    const el = document.createElement('div');
+    el.classList.add('way');
+
+    // 초기값 부여
+    el.setAttribute('data-x', 0);
+    el.setAttribute('data-y', 0);
+    el.style.width = width + 'px';
+    el.style.height = height + 'px';
+    
+    resizeCtn.appendChild(el);
+  }
+
+  const onchangeDrawing = (event) => {
+    const file = event.target.files[0];
+    const target = document.querySelector('.draggable-drawing');
+    target.src = `${URL.createObjectURL(file)}`;
+  }
+
+  mapping('.draggable-drawing');
+  mapping('.resize-container');
+  mapping('.resize-drag', true);
+  mapping('.way', true);
+  </script>
+</body>
+</html>

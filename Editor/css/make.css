@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+body {
+  z-index: -3;
+  position: relative;
+  display: flex;
+  height: 100vh;
+}
+
+.main {
+  flex: 1;
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  background-color: #eeeeee;
+  overflow: scroll;
+  z-index: -2;
+  position: relative;
+}
+
+.ipt-ctn {
+  position: fixed;
+  z-index: 2;
+  padding: 10px 15px;
+  width: 180px;
+  height: 80px;
+  font-size: 17px;
+  line-height: 30px;
+  background-color: #c2c2c2;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
+}
+
+.ipt {
+  width: 80px;
+  margin-right: 5px;
+  height: 25px;
+}
+
+.download-link {
+  position: fixed;
+  left: 180px;
+  z-index: 2;
+  font-size: 25px;
+  line-height: 80px;
+  height: 80px;
+  width: 200px;
+  text-align: center;
+  padding-right: 30px;
+  background: url('../img/save_ic.png') no-repeat right 20px center;
+  background-size: 30px;
+  background-color: #ffae44;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
+}
+
+.import-drawing {
+  position: fixed;
+  left: 380px;
+  z-index: 2;
+  font-size: 25px;
+  line-height: 80px;
+  height: 80px;
+  width: 170px;
+  text-align: center;
+  background-color: #44a5ff;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
+  cursor: pointer;
+}
+
+.draggable-drawing {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 100px;
+  position: absolute;
+  z-index: -1;
+}
+
+.resize-container {
+  display: inline-block;
+  width: 1200px;
+  height: 500px;
+  box-sizing: border-box;
+  background-color: #92929279;
+  margin: 100px;
+  z-index: 0;
+  position: absolute;
+}
+
+.trash-can {
+  position: fixed;
+  z-index: -1;
+  right: 330px;
+  bottom: 30px;
+  background: url('../img/trashcan_ic.png') no-repeat center center;
+  width: 130px;
+  height: 130px;
+  background-size: 90px;
+  background-color: white;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
+  transition: bottom 0.3s;
+}
+
+.drop-target {
+  bottom: 40px; 
+}
+
+.resize-drag {
+  position: absolute;
+  z-index: 10;
+  border-radius: 8px;
+  border: 5px solid;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+  transition: filter 0.3s;
+}
+
+.can-drop {
+  filter: opacity(0.5);
+}
+
+.menu {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-flow: column;
+}
+
+.menu__title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 20px;
+  height: 50px;
+}
+
+.menu__selectable {
+  background-color: #ececec;
+  flex: 1;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.selectee {
+  width: 100px;
+  height: 100px;
+  margin: 20px 5px;
+  border-radius: 8px;
+  position: relative;
+  border: 5px solid;
+  cursor: -webkit-grab;
+}
+
+.selectee__name {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  height: 16px;
+  bottom: -25px;
+}
+
+.way {
+  background-color: #58bb6c;
+  position: absolute;
+}
+
+[data-type="seat"] {
+  background: url('../img/seat_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #999999;
+  border-color: #777777;
+}
+
+[data-type="extinguisher"] {
+  background: url('../img/extinguisher_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #ff9494;
+  border-color: #da7f7f;
+}
+
+[data-type="axe"] {
+  background: url('../img/axe_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #ffb579;
+  border-color: #d39562;
+}
+
+[data-type="boat"] {
+  background: url('../img/boat_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #60b8ff;
+  border-color: #5096cf;
+}
+
+[data-type="jacket"] {
+  background: url('../img/jacket_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #5d60ff;
+  border-color: #3a3b96;
+}
+
+[data-type="exit"] {
+  background: url('../img/exit_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #9be67e;
+  border-color: #6ea15a;
+}
+
+[data-type="beacon"] {
+  background: url('../img/beacon_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #ffffff;
+  border-color: #ffff00;
+  border-radius: 100%;
+}
+
+[data-type="way"] {
+  background: url('../img/way_ic.png') no-repeat center center;
+  background-size: 50%;
+  background-color: #d0ffbd;
+  border-radius: 100%;
+  border: none;
+}
