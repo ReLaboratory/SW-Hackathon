@@ -5,7 +5,6 @@ const app = express();
 const io = socket(require('http').createServer(app));
 
 let passengers = {};
-let
 let info = {
     updateInfo: () => {
         this.degree += 5;
