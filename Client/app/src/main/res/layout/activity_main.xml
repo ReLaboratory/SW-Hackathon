@@ -16,11 +16,11 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/title_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="승차권 예매"
+            android:text="승선권 예매"
             android:textColor="#fff"
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
@@ -35,6 +35,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
         app:layout_constraintEnd_toStartOf="@id/arriveTv_main"/>
+
+    <View
+        android:id="@+id/nothing_main"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_main"/>
 
     <TextView
         android:id="@+id/arriveTv_main"
@@ -52,32 +59,90 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="목포항"
-        android:textSize="25sp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/departTv_main"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/departTv_main"
-        app:layout_constraintEnd_toStartOf="@id/arrowImage_main" />
-
-    <ImageView
-        android:id="@+id/arrowImage_main"
-        android:src="@drawable/arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@id/actualDepartTv_main"
-        app:layout_constraintEnd_toStartOf="@id/actualArriveTv_main"
-        app:layout_constraintTop_toBottomOf="@id/departTv_main"/>
+        app:layout_constraintEnd_toStartOf="@id/actualArrivalTv_main"/>
 
     <TextView
-        android:id="@+id/actualArriveTv_main"
+        android:id="@+id/actualArrivalTv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="제주항"
-        android:textSize="25sp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@id/arriveTv_main"
-        app:layout_constraintTop_toBottomOf="@id/arriveTv_main"
-        app:layout_constraintStart_toEndOf="@id/arrowImage_main"/>
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/actualDepartTv_main"
+        app:layout_constraintTop_toBottomOf="@+id/arriveTv_main"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <View
+        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/actualArrivalTv_main" />
+
+    <TextView
+        android:id="@+id/dateTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="출발일"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/actualArrivalTv_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/actualDateTv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018년 9월 12일"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/dateTv_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/actualDateTv_main" />
+
+    <TextView
+        android:id="@+id/human_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:text="인원"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/actualDateTv_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/actualHuman_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성인 1명/경로 1명"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/human_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/ticketing_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="승선권 예매하기"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

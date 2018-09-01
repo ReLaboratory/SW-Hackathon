@@ -58,8 +58,8 @@
   const resizeCtn = document.querySelector('.resize-container');
   const downloadLink = document.querySelector('.download-link');
   const METER_RATIO = 50; // 1미터 당 픽셀 상수
-  const MIN_WIDTH = 50; // resiazable 최소 가로 길이
-  const MIN_HEIGHT = 50; // resiazable 최소 세로 길이
+  const MIN_WIDTH = 20; // resiazable 최소 가로 길이
+  const MIN_HEIGHT = 20; // resiazable 최소 세로 길이
 
   const updateData = () => {
     const floorPlanData = {
@@ -71,6 +71,7 @@
       const type = rd.getAttribute('data-type');
       floorPlanData[type] = [];
     }
+    floorPlanData['way'] = [];
 
     for(rd of resizeDrags) {
       const type = rd.getAttribute('data-type');
@@ -82,6 +83,17 @@
       item.width = rd.style.width;
       item.height = rd.style.height;
       floorPlanData[type].push(item);
+    }
+
+    const ways = document.getElementsByClassName('way');
+    for(way of ways) {
+      const item = {};
+      item.x = parseInt(way.getAttribute('data-x') * 1, 10);
+      item.y = parseInt(way.getAttribute('data-y') * 1, 10);
+
+      item.width = way.style.width;
+      item.height = way.style.height;
+      floorPlanData['way'].push(item);
     }
 
     downloadLink.href =

@@ -10,5 +10,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar_main));
+
+        findViewById(R.id.ticketing_btn).setOnClickListener(v -> {
+            
+        });
     }
 }

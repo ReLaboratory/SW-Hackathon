@@ -7,27 +7,63 @@
     tools:context=".MapActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_ticket"
+        android:id="@+id/toolbar_map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
         <ImageView
             android:id="@+id/back_map"
-            android:src="@drawable/back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="Go to back" />
+            android:contentDescription="Go to back"
+            android:src="@drawable/back_arrow" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="지도"
-            android:textSize="20sp"
             android:textColor="#fff"
-            android:layout_gravity="center"/>
+            android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/mapLayout_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_map">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/helpBtn_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/round_btn"
+        android:text="도움 요청"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reportBtn_map"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/reportBtn_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/round_btn"
+        android:text="신고"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/helpBtn_map" />
 
 </android.support.constraint.ConstraintLayout>
